@@ -3,7 +3,7 @@ import{ SMURF_API_GET, SMURF_API_GET_SUCCESS, SMURF_API_GET_ERROR, ADD_SMURF, SM
 export const initialState = {
     smurfs: [],
     isLoading: false,
-    errorText: '',
+    errorText: 'This is an error',
 }
 
 const reducer = (state = initialState, action)=>{
@@ -32,7 +32,8 @@ const reducer = (state = initialState, action)=>{
             });
         case (SMURF_ERROR_MESSAGE):
             return({
-                ...state, isLoading: false,
+                ...state, 
+                isLoading: false,
                 errorText: action.payload
             });
         default:

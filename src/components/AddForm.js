@@ -7,7 +7,7 @@ const AddForm = (props) => {
         name:"",
         position:"",
         nickname:"",
-        description:""
+        description:"",
     });
 
     //remove when error state is added
