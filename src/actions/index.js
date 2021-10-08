@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const SMURF_API_GET = 'SMURF_API_GET';
 export const SMURF_API_GET_SUCCESS = 'SMURF_API_GET_SUCCESS';
-// export const SMURF_API_FETCH_ERROR = 'SMURF_API_FETCH_ERROR';
+export const SMURF_API_GET_ERROR = 'SMURF_GET_FETCH_ERROR';
 export const ADD_SMURF = 'ADD_SMURF';
 export const SMURF_ERROR_MESSAGE = 'SMURF_ERROR_MESSAGE';
 
@@ -14,7 +14,7 @@ export const getSmurfs = () => dispatch => {
             dispatch({type: SMURF_API_GET_SUCCESS, payload: resp.data});
             dispatch(setErrorMessage(''));
         }).catch(error => {
-            dispatch(setErrorMessage(error.resp.data.Error));
+            dispatch({ type:SMURF_API_GET_ERROR, payload: Error });
         })
 }
 
