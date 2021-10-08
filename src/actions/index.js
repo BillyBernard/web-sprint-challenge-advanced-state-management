@@ -27,8 +27,8 @@ export const addSmurf = (smurf) => dispatch => {
             
     axios.post('http://localhost:3333/smurfs', smurf)
         .then(resp =>{
-            dispatch({type:ADD_SMURF, payload:{...smurf, id:Date.now() }});
-            dispatch(setErrorText(""));
+            dispatch({type:ADD_SMURF, payload:{...smurf }});
+            dispatch(setErrorText("this is the error"));
         }).catch(err=>{
             dispatch(setErrorText(err.response.data.Error));
         });
