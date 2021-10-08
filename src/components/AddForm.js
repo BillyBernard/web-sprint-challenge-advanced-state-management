@@ -25,10 +25,10 @@ const AddForm = (props) => {
         e.preventDefault();
         props.addSmurf(state);
         setState({
-            name:"",
-            position:"",
-            nickname:"",
-            description:""
+            name: state.name,
+            position: state.position,
+            nickname: state.nickname,
+            description: state.description,
         })
     }
 

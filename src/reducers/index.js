@@ -23,7 +23,7 @@ const reducer = (state = initialState, action)=>{
             return({
                 ...state,
                 isLoading: false,
-                error: action.payload,
+                errorText: action.payload,
             })
         case (ADD_SMURF):
             return ({
