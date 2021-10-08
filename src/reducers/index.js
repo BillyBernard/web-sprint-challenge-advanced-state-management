@@ -3,7 +3,7 @@ import{ SMURF_API_GET, SMURF_API_GET_SUCCESS, SMURF_API_GET_ERROR, ADD_SMURF, SM
 export const initialState = {
     smurfs: [],
     isLoading: false,
-    errorMessage: '',
+    errorText: '',
 }
 
 const reducer = (state = initialState, action)=>{
@@ -19,10 +19,12 @@ const reducer = (state = initialState, action)=>{
                 isLoading: false,
                 smurfs: action.payload
             });
-        // case (SMURF_API_GET_ERROR):
-        //     return({
-
-        //     })
+        case (SMURF_API_GET_ERROR):
+            return({
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            })
         case (ADD_SMURF):
             return ({
                 ...state,
@@ -31,7 +33,7 @@ const reducer = (state = initialState, action)=>{
         case (SMURF_ERROR_MESSAGE):
             return({
                 ...state, isLoading: false,
-                errorMessage: action.payload
+                errorText: action.payload
             });
         default:
             return(state);

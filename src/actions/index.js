@@ -12,28 +12,30 @@ export const getSmurfs = () => dispatch => {
         .then(resp =>{
             //console.log(resp.data);
             dispatch({type: SMURF_API_GET_SUCCESS, payload: resp.data});
-            dispatch(setErrorMessage(''));
-        }).catch(error => {
-            dispatch({ type:SMURF_API_GET_ERROR, payload: Error });
+            dispatch(setErrorText(''));
+        }).catch(err => {
+            dispatch(setErrorText(err.response.data.Error));
         })
 }
+
 
 export const addSmurf = (smurf) => dispatch => {
     //console.log(smurf);
     if (!smurf.name || !smurf.nickname || !smurf.position) {
-        dispatch({type: SMURF_ERROR_MESSAGE, payload:"Name, Position and Nickname needed!"});
+        dispatch({type: SMURF_ERROR_MESSAGE, payload:"Name, Position and Nickname are required fields"});
     }
             
     axios.post('http://localhost:3333/smurfs', smurf)
-        .then(res=>{
+        .then(resp =>{
             dispatch({type:ADD_SMURF, payload:{...smurf, id:Date.now() }});
-            dispatch(setErrorMessage(""));
+            dispatch(setErrorText(""));
         }).catch(err=>{
-            dispatch(setErrorMessage(err.response.data.Error));
+            dispatch(setErrorText(err.response.data.Error));
         });
 }
+
         
-export const setErrorMessage = (err) => {
+export const setErrorText = (err) => {
     return({type:SMURF_ERROR_MESSAGE, payload: err});
         }
 
